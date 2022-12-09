@@ -25,11 +25,14 @@ wait
 
 echo "stopping valheim service to load custom config files"
 sudo systemctl stop valheim
-wait
+wait 5
 
 #check if configs for valheim exist yet
 if [ -f $CONFIG_DIR/adminlist.txt ]; then rm -rf $CONFIG_DIR/adminlist.txt; fi
 cp $SCRIPT_DIR/adminlist.txt $CONFIG_DIR
+
+#was used for testing
+#cp /repos/valheim-server-script/adminlist.txt $CONFIG_DIR
 
 #start the service
 echo "starting satisfactory service for real now"
