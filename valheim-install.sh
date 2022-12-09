@@ -18,22 +18,15 @@ steamcmd +force_install_dir $GAME_DIR +login anonymous +app_update 896660 valida
     sudo systemctl enable valheim
   fi
 
-#start the service
-echo "starting valheim service to seed config files"
-sudo systemctl start valheim
-wait
-
-echo "stopping valheim service to load custom config files"
-sudo systemctl stop valheim
-wait 5
-
 #check if configs for valheim exist yet
 if [ -f $CONFIG_DIR/adminlist.txt ]; then rm -rf $CONFIG_DIR/adminlist.txt; fi
+if [ ! -d $CONFIG_DIR ]; then mkdir -p $CONFIG_DIR; fi
+
 cp $SCRIPT_DIR/adminlist.txt $CONFIG_DIR
 
 #was used for testing
 #cp /repos/valheim-server-script/adminlist.txt $CONFIG_DIR
 
 #start the service
-echo "starting satisfactory service for real now"
+echo "starting valheim service"
 sudo systemctl start valheim
