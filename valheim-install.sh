@@ -1,5 +1,5 @@
 GAME_DIR="/games/valheim"
-CONFIG_DIR="~/.config/unity3d/IronGate/Valheim"
+CONFIG_DIR="~/.config/unity3d/IronGate/Valheim/"
 SCRIPT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 IS_STEAM_HERE=$(command -v steamcmd >/dev/null 2>&1 || { echo >&2 "no"; })
 
