@@ -1,0 +1,16 @@
+[Unit]
+Description=Valheim Deditcated Server
+Wants=network-online.target
+After=syslog.target network.target nss-lookup.target network-online.target
+
+[Service]
+Environment="LD_LIBRARY_PATH=./linux64"
+ExecStart=/games/valheim/valheim_server.x86_64 -name "Jimmy's Valheim Server" -port 2456 -world "Dedicated" -password "monkey"
+User=steam
+Group=steam
+StandardOutput=journal
+Restart=on-failure
+WorkingDirectory=/games/valheim/
+
+[Install]
+WantedBy=multi-user.target
