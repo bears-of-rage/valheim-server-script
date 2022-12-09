@@ -1,4 +1,5 @@
 GAME_DIR="/games/valheim"
+CONFIG_DIR="~/.config/unity3d/IronGate/Valheim"
 SCRIPT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 IS_STEAM_HERE=$(command -v steamcmd >/dev/null 2>&1 || { echo >&2 "no"; })
 
@@ -16,6 +17,12 @@ steamcmd +force_install_dir $GAME_DIR +login anonymous +app_update 896660 valida
     sudo systemctl daemon-reload
     sudo systemctl enable valheim
   fi
+
+#check if configs for valheim exist yet
+if [ ! -d $CONFIG_DIR ]; then mkdir -p $CONFIG_DIR; fi
+if [ -f $CONFIG_DIR/adminlist.txt ]; then rm -rf $CONFIG_DIR/adminlist.txt; fi
+cp $SCRIPT_DIR/adminlist.txt $CONFIG_DIR
+chown -R steam:steam $CONFIG_DIR
 
 #start the service
 echo "starting satisfactory service"
